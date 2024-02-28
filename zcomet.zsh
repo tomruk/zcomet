@@ -334,6 +334,9 @@ _zcomet_clone_repo() {
               "${repo_dir}"/**/prompt_*_setup(N.); do
     _zcomet_compile "$file"
   done
+  if [[ "$repo" == 'ohmyzsh/ohmyzsh' && -n $ZSH_CACHE_DIR ]]; then
+    mkdir -p "${ZSH_CACHE_DIR}/completions"
+  fi
 }
 
 ############################################################
