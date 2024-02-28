@@ -367,6 +367,11 @@ _zcomet_load_command() {
   repo_branch=$1
   shift
 
+  if [[ $repo_branch == 'ohmyzsh' ]] || [[ $repo_branch == 'ohmyzsh/ohmyzsh' ]]; then
+    [ -z $ZSH ] && export ZSH="${ZCOMET[REPOS_DIR]}/ohmyzsh/ohmyzsh"
+    [ -z $ZSH_CACHE_DIR ] && export ZSH_CACHE_DIR="${ZSH}/cache"
+  fi
+
   # Don't try to clone local plugins
   if [[ $repo_branch != /* ]]; then
     _zcomet_clone_repo ${clone_options} "$repo_branch" || return $?
